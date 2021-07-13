@@ -1,0 +1,369 @@
+// ### Customized Bootstrap
+$primary: hsl(356, 100%, 66%);
+$secondary: hsl(355, 100%, 74%);
+$bg-gradient: linear-gradient(to right, hsl(237, 17%, 21%), hsl(237, 23%, 32%));
+
+@import "../node_modules/bootstrap/scss/mixins/";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+$custom-theme: (
+  "accent": hsl(208, 49%, 24%),
+  "footer-text": hsl(240, 2%, 79%),
+  "footer-bg": hsl(240, 10%, 16%),
+  "body-gray": hsl(207, 13%, 34%),
+  "gradient-intro-light-red": hsl(353, 100%, 62%),
+  "gradient-intro-lighter-red": hsl(13, 100%, 72%),
+  "gradient-body-gray-blue": hsl(237, 17%, 21%),
+  "gradient-body-des-blue": hsl(237, 23%, 32%),
+);
+
+$theme-colors: map-merge($theme-colors, $custom-theme);
+
+// ### Root ###
+$overpass: "Overpass", sans-serif;
+$ubuntu: "Ubuntu", sans-serif;
+$intro-gradient: linear-gradient(
+  to right,
+  hsl(13, 100%, 72%),
+  hsl(353, 100%, 62%)
+);
+
+$zindex-dropdown: 1000;
+$zindex-sticky: 1020;
+$zindex-fixed: 1030;
+$zindex-modal-backdrop: 1040;
+$zindex-offcanvas: 1050;
+$zindex-modal: 1060;
+$zindex-popover: 1070;
+$zindex-tooltip: 1080;
+
+@import "../node_modules/bootstrap/scss/mixins/";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+// ### Typography ###
+body {
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  overflow-x: hidden;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: $overpass;
+}
+p {
+  font-family: $ubuntu;
+  font-size: 18px;
+  color: hsl(207, 13%, 34%);
+}
+
+// ### Resets ###
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+// ### Mixins ###
+@mixin btn-style {
+  max-height: 45px;
+  font-family: $ubuntu;
+  font-weight: bold;
+}
+@mixin btn-hover {
+  background-color: rgba(223, 222, 222, 0.3) !important;
+  border-style: none;
+  outline: none !important;
+  font-weight: bolder;
+}
+@mixin btn-active-focus {
+  color: hsl(353, 100%, 62%);
+  background-color: white;
+  border-style: none;
+  outline: none !important;
+  font-weight: bolder;
+}
+// ### General Stylings ###
+#navMenu {
+  z-index: 100;
+}
+h1,
+h2,
+h3,
+p {
+  z-index: 99;
+}
+
+button {
+  z-index: 100;
+}
+
+#nav-btn-accent,
+#header-btn-accent {
+  background-color: white !important;
+  color: hsl(13, 100%, 72%) !important;
+}
+#nav-btn-accent:hover {
+  color: hsl(353, 100%, 62%) !important;
+  transform: scale(1.1);
+}
+#header-btn-accent:hover {
+  color: hsl(353, 100%, 62%) !important;
+  transform: scale(1.1);
+}
+
+.collapse,
+.navbar-collapse,
+.navbar-nav {
+  z-index: $zindex-dropdown;
+}
+
+// ### Header / Intro ###
+
+.intro {
+  background: linear-gradient(
+    to right,
+    hsl(13, 100%, 72%),
+    hsl(353, 100%, 62%)
+  );
+  width: 100%;
+  height: 70vh;
+  border-radius: 0 0 0 100px;
+  position: relative;
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    max-width: 100%;
+    top: -200%;
+    left: -21%;
+    background-size: cover;
+  }
+}
+@media screen and (max-width: 800px) {
+  .intro__bg {
+    display: none;
+  }
+}
+
+.header__content {
+  width: 100%;
+  height: 50vh;
+  font-family: $overpass;
+  color: white;
+}
+.header__text {
+  font-size: 76px;
+  font-weight: bold;
+}
+.header-btn {
+  @include btn-style;
+  &:hover {
+    @include btn-hover;
+  }
+  &:active,
+  &:focus {
+    @include btn-active-focus;
+  }
+}
+@media screen and (max-width: 860px) {
+  .header__text {
+    font-size: 50px;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 600px) {
+  .header__text {
+    font-size: 36px;
+    text-align: center;
+  }
+}
+// ### Navbar ###
+#navMenu {
+  z-index: $zindex-dropdown;
+}
+.dropdown > .dropdown-toggle,
+.dropdown > .dropdown-toggle:active,
+.dropdown > .dropdown-toggle:hover,
+.dropdown > .dropdown-toggle:focus {
+  background: transparent;
+  border-style: none;
+  outline: none !important;
+  box-shadow: none;
+  z-index: $zindex-dropdown;
+}
+.dropdown > .dropdown-toggle:active,
+.dropdown > .dropdown-toggle:hover,
+.dropdown > .dropdown-toggle:focus {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  outline: none !important;
+  box-shadow: none;
+}
+.dropdown-item:active,
+.dropdown-item:hover,
+.dropdown-item:focus {
+  font-weight: bold;
+}
+
+.dropdown-menu {
+  z-index: $zindex-dropdown;
+  li > a:hover,
+  li > a:focus,
+  li > a:active {
+    background-color: white;
+  }
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+// ********** Mobile-screen Nav Menu unable to style for whatever reason ***** //
+
+// @media screen and (min-width: 600px) {
+//   #navMenu {
+//     width: 100% !important;
+//     background-color: white;
+//     position: relative;
+//     display: block !important;
+//     flex-direction: column !important;
+//     justify-content: center !important;
+//     li a {
+//       color: hsl(208, 49%, 24%) !important;
+//     }
+//   }
+// }
+
+.log-btn {
+  @include btn-style;
+  &:hover {
+    @include btn-hover;
+  }
+  &:active,
+  &:focus {
+    @include btn-active-focus;
+  }
+}
+
+// ### Body Section ###
+
+// ### Section 1 ### (DESKTOP)
+@media screen and (min-width: 900px) {
+  .section-1 {
+    position: relative;
+    height: 100vh;
+    background: white url("../images/illustration-editor-desktop.svg") right
+      no-repeat;
+    z-index: 4;
+  }
+}
+
+// ### Section 1 ### (MOBILE)
+@media screen and (max-width: 900px) {
+}
+
+// ### Section 2 ### (DESKTOP)
+@media screen and (min-width: 900px) {
+  .section-2 {
+    background: url("../images/bg-pattern-circles.svg") no-repeat left,
+      $bg-gradient;
+    height: 50vh;
+    width: 100%;
+    border-radius: 0 100px 0 100px;
+  }
+}
+
+// ### Section 2 ### (MOBILE)
+@media screen and (max-width: 900px) {
+  .section-2 {
+    background: url("../images/bg-pattern-circles.svg") no-repeat top,
+      $bg-gradient;
+    height: 90vh;
+    background-size: contain;
+    width: 100vw;
+    margin: 10em 0;
+    border-radius: 0 100px 0 100px;
+
+    overflow: hidden;
+
+    &__text {
+      text-align: center;
+      & > p {
+        font-size: 18px;
+      }
+    }
+  }
+  #phones {
+    width: 100%;
+    height: auto;
+  }
+}
+
+// ### Section 3 ### (DESKTOP)
+.section-3 {
+  height: 100vh;
+  width: 100%;
+  font-family: $overpass;
+}
+
+#laptop {
+  left: -25%;
+  min-width: 100%;
+  min-height: 100%;
+  position: relative;
+}
+
+// ### Section 3 ### (MOBILE)
+@media screen and (max-width: 900px) {
+  .section-3 {
+    width: 100%;
+    height: 100%;
+
+    &__text {
+      text-align: center;
+      & > p {
+        font-size: 18px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 900px) {
+}
+// ### Footer ###
+footer {
+  border-radius: 0 100px 0 0;
+  width: 100vw;
+  height: auto;
+  background-color: hsl(240, 10%, 16%);
+  font-family: $ubuntu;
+
+  a {
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  footer {
+    text-align: center;
+
+    img {
+      padding: 3em 0;
+    }
+    h5 {
+      padding: 1em 0;
+    }
+  }
+}
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
